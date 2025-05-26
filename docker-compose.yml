@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgresql://lu_user:lu_password@db:5432/lu_estilo_db
+
+  db:
+    image: postgres:13-alpine
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lu_user -d lu_estilo_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    environment:
+      POSTGRES_USER: lu_user
+      POSTGRES_PASSWORD: lu_password
+      POSTGRES_DB: lu_estilo_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
