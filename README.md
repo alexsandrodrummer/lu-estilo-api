@@ -23,7 +23,7 @@ API moderna para gestão de produtos e vendas da Lu Estilo, desenvolvida com:
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/seu-usuario/lu-estilo-api.git
+git clone https://github.com/alexsandrodrummer/lu-estilo-api.git
 
 # 2. Suba os containers
 docker-compose up -d --build
