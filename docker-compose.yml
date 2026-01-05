@@ -11,7 +11,7 @@ services:
       db:
         condition: service_healthy
     environment:
-      - DATABASE_URL=postgresql://lu_user:lu_password@db:5432/lu_estilo_db
+      - DATABASE_URL=
 
   db:
     image: postgres:13-alpine
@@ -21,9 +21,9 @@ services:
       timeout: 5s
       retries: 5
     environment:
-      POSTGRES_USER: lu_user
-      POSTGRES_PASSWORD: lu_password
-      POSTGRES_DB: lu_estilo_db
+      POSTGRES_USER: 
+      POSTGRES_PASSWORD: 
+      POSTGRES_DB: 
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
